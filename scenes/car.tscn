@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqgjp7ro4vurr"]
+
+[ext_resource type="Script" path="res://scripts/wheel.gd" id="1_8molv"]
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_rwv0a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjnv2"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ng0ep"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lfwtp"]
+size = Vector3(1, 0.5, 0.68)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l6qjl"]
+radius = 0.115
+height = 0.615
+
+[node name="Car" type="RigidBody3D"]
+mass = 15.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.7, 0)
+script = ExtResource("1_rwv0a")
+engine_power = 30.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bjnv2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ng0ep")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258954, 0.507917)
+mesh = SubResource("BoxMesh_lfwtp")
+
+[node name="Wheels" type="Marker3D" parent="."]
+
+[node name="Wheel_FL" type="RayCast3D" parent="Wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371393, 0, 0.911824)
+script = ExtResource("1_8molv")
+spring_strength = 500.0
+spring_damper = 30.0
+wheel_grip = 0.85
+is_steerable = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/Wheel_FL"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.00451517, -0.463254, -0.0261298)
+mesh = SubResource("CapsuleMesh_l6qjl")
+
+[node name="Wheel_FR" type="RayCast3D" parent="Wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.371, 0, 0.912)
+script = ExtResource("1_8molv")
+spring_strength = 500.0
+spring_damper = 30.0
+wheel_grip = 0.85
+is_steerable = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Wheels/Wheel_FR"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.00451517, -0.463254, -0.0261298)
+mesh = SubResource("CapsuleMesh_l6qjl")
+skeleton = NodePath("../../Wheel_FL")
+
+[node name="Wheel_RL" type="RayCast3D" parent="Wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371393, 0, -0.887855)
+script = ExtResource("1_8molv")
+spring_strength = 500.0
+spring_damper = 30.0
+wheel_grip = 0.85
+
+[node name="Wheel_Rr" type="RayCast3D" parent="Wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374011, 0, -0.884963)
+script = ExtResource("1_8molv")
+spring_strength = 500.0
+spring_damper = 30.0
+wheel_grip = 0.85

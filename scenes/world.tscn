@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2bdlc6wcupbx"]
+
+[ext_resource type="Texture2D" uid="uid://cwpgwetkiv31s" path="res://textures/grid_dark.png" id="1_eu6mh"]
+[ext_resource type="PackedScene" uid="uid://cqgjp7ro4vurr" path="res://scenes/car.tscn" id="2_phe8r"]
+
+[sub_resource type="Environment" id="Environment_3ygtw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x3m0e"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2h1ax"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3jgf"]
+albedo_texture = ExtResource("1_eu6mh")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3ygtw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.739232, 0.535527, 0.408347, 0, -0.606349, 0.795199, 0.673451, -0.587836, -0.448233, 0, 2.51965, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.532448, -0.283558, 0.797555, -1.23641e-08, 0.942221, 0.334991, -0.846463, 0.178365, -0.501684, 2.62051, 2.57901, -1.67463)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_x3m0e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_2h1ax")
+skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_f3jgf")
+
+[node name="Car" parent="." instance=ExtResource("2_phe8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.337439, 5.31001, 1.0869)
