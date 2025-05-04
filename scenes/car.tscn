@@ -19,9 +19,9 @@ height = 0.615
 [node name="Car" type="RigidBody3D"]
 mass = 15.0
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, -0.7, 0)
+center_of_mass = Vector3(0, -0.5, 0)
 script = ExtResource("1_rwv0a")
-engine_power = 30.0
+engine_power = 50.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_bjnv2")
@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371393, 0, 0.911824)
 script = ExtResource("1_8molv")
 spring_strength = 500.0
 spring_damper = 30.0
-wheel_grip = 0.85
+wheel_grip = 0.1
 is_steerable = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/Wheel_FL"]
@@ -52,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.371, 0, 0.912)
 script = ExtResource("1_8molv")
 spring_strength = 500.0
 spring_damper = 30.0
-wheel_grip = 0.85
+wheel_grip = 0.1
 is_steerable = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Wheels/Wheel_FR"]
@@ -65,11 +65,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371393, 0, -0.887855)
 script = ExtResource("1_8molv")
 spring_strength = 500.0
 spring_damper = 30.0
-wheel_grip = 0.85
+is_motorized = false
+wheel_grip = 0.1
 
 [node name="Wheel_Rr" type="RayCast3D" parent="Wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374011, 0, -0.884963)
 script = ExtResource("1_8molv")
 spring_strength = 500.0
 spring_damper = 30.0
-wheel_grip = 0.85
+is_motorized = false
+wheel_grip = 0.1

@@ -86,7 +86,7 @@ func _lateral_force(delta: float, contact_point: Vector3) -> void:
 func _drag_force(contact_point: Vector3) -> void:
 	var direction: Vector3 = global_basis.z
 	var wheel_velocity: Vector3 = _get_wheel_velocity(global_position)
-	var drag_velocity = direction.dot(wheel_velocity) * CAR.mass / 10
+	var drag_velocity = direction.dot(wheel_velocity) * CAR.mass / 5
 	
 	CAR.apply_force(-direction * drag_velocity, contact_point - CAR.global_position)
 
